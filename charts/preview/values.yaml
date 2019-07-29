@@ -20,10 +20,3 @@ preview:
     repository:
     tag:
     pullPolicy: IfNotPresent
-
-env:
-  DB: jx-go-demo-6-db
-
-jx-go-demo-6-db:
-  replicaSet:
-    enabled: true
