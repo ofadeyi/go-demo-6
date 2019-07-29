@@ -14,3 +14,9 @@ dependencies:
 - alias: preview
   name: go-demo-6
   repository: file://../go-demo-6
+
+- alias: go-demo-6-db
+  name: mongodb
+  version: 5.3.0
+  repository:  https://kubernetes-charts.storage.googleapis.com
+  condition: db.enabled
