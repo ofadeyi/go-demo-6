@@ -22,8 +22,8 @@ preview:
     pullPolicy: IfNotPresent
 
 env:
-  DB: go-demo-6-db
+  DB: jx-go-demo-6-db
 
-go-demo-6-db:
+jx-go-demo-6-db:
   replicaSet:
     enabled: true
