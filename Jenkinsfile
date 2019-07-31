@@ -3,7 +3,7 @@ pipeline {
     label "jenkins-go"
   }
   environment {
-    ORG = 'vfarcic'
+    ORG = 'ofadeyi'
     APP_NAME = 'go-demo-6'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
   }
@@ -19,13 +19,13 @@ pipeline {
       }
       steps {
         container('go') {
-          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+          dir('/home/jenkins/go/src/github.com/ofadeyi/go-demo-6') {
             checkout scm
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
             sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
           }
-          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/preview') {
+          dir('/home/jenkins/go/src/github.com/ofadeyi/go-demo-6/charts/preview') {
             sh "make preview"
             sh "jx preview --app $APP_NAME --dir ../.."
           }
@@ -38,7 +38,7 @@ pipeline {
       }
       steps {
         container('go') {
-          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6') {
+          dir('/home/jenkins/go/src/github.com/ofadeyi/go-demo-6') {
             checkout scm
 
             // ensure we're not on a detached head
@@ -62,7 +62,7 @@ pipeline {
       }
       steps {
         container('go') {
-          dir('/home/jenkins/go/src/github.com/vfarcic/go-demo-6/charts/go-demo-6') {
+          dir('/home/jenkins/go/src/github.com/ofadeyi/go-demo-6/charts/go-demo-6') {
             sh "jx step changelog --version v\$(cat ../../VERSION)"
 
             // release the helm chart
