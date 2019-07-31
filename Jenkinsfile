@@ -6,6 +6,7 @@ pipeline {
     ORG = 'ofadeyi'
     APP_NAME = 'go-demo-6'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
+    DOCKER_REGISTRY_ORG = 'devopstk26'
   }
   stages {
     stage('CI Build and push snapshot') {
