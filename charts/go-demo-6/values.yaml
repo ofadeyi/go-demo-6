@@ -16,6 +16,7 @@ service:
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
 env:
   DB: go-demo-6-db
+
 resources:
   limits:
     cpu: 100m
@@ -34,7 +35,9 @@ readinessProbe:
   successThreshold: 1
   timeoutSeconds: 1
 terminationGracePeriodSeconds: 10
+
 go-demo-6-db:
   replicaSet:
     enabled: true
 
+  usePassword: false
