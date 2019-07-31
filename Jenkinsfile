@@ -42,6 +42,9 @@ pipeline {
           dir('/home/jenkins/go/src/github.com/ofadeyi/go-demo-6') {
             checkout scm
 
+            // run unit test first
+            sh "make unittest"
+
             // ensure we're not on a detached head
             sh "git checkout master"
             sh "git config --global credential.helper store"
