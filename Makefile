@@ -11,6 +11,8 @@ BUILDFLAGS := ''
 CGO_ENABLED = 0
 VENDOR_DIR=vendor
 
+VERSION := 2.0.0
+
 all: build
 
 check: fmt build test
