@@ -92,7 +92,7 @@ func HelloServer(w http.ResponseWriter, req *http.Request) {
 		delayNum, _ := strconv.Atoi(delay)
 		sleep(time.Duration(delayNum) * time.Millisecond)
 	}
-	io.WriteString(w, "hello, VERSIONING!\n")
+	io.WriteString(w, "hello, Pair Programing is great!\n")
 }
 
 func RandomErrorServer(w http.ResponseWriter, req *http.Request) {
