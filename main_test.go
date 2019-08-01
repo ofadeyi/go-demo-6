@@ -88,7 +88,7 @@ func (s *MainTestSuite) Test_HelloServer_WritesHelloWorld() {
 
 	HelloServer(w, req)
 
-	w.AssertCalled(s.T(), "Write", []byte("hello, VERSIONING!\n"))
+	w.AssertCalled(s.T(), "Write", []byte("hello, Pair Programing is good!\n"))
 }
 
 func (s *MainTestSuite) Test_HelloServer_Waits_WhenDelayIsPresent() {
