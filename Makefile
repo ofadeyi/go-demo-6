@@ -1,10 +1,11 @@
-VERSION := 1.0.0
+
+VERSION := 2.0.0
 SHELL := /bin/bash
 GO := GO15VENDOREXPERIMENT=1 go
 NAME := go-demo-6
 OS := $(shell uname)
 MAIN_GO := main.go
-ROOT_PACKAGE := $(GIT_PROVIDER)/vfarcic/$(NAME)
+ROOT_PACKAGE := $(GIT_PROVIDER)/ofadeyi/$(NAME)
 GO_VERSION := $(shell $(GO) version | sed -e 's/^[^0-9.]*\([0-9.]*\).*/\1/')
 PACKAGE_DIRS := $(shell $(GO) list ./... | grep -v /vendor/)
 PKGS := $(shell go list ./... | grep -v /vendor | grep -v generated)
@@ -19,7 +20,7 @@ check: fmt build test
 build:
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) build -ldflags $(BUILDFLAGS) -o bin/$(NAME) $(MAIN_GO)
 
-test: 
+test:
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test $(PACKAGE_DIRS) -test.v
 
 full: $(PKGS)
@@ -61,19 +62,11 @@ lint: vendor | $(PKGS) $(GOLINT) # ❷
 	    test -z "$$($(GOLINT) $$pkg | tee /dev/stderr)" || ret=1 ; \
 	done ; exit $$ret
 
-unittest: 
+unittest:
 	CGO_ENABLED=$(CGO_ENABLED) $(GO) test --run UnitTest -v
 
+functest:
+	CGO_ENABLED=$(CGO_ENABLED) $(GO) test -test.v --run FunctionalTest --cover
 
-functest: 
-	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
-	test -test.v --run FunctionalTest \
-	--cover
-
-
-integtest: 
-	DURATION=1 \
-	CGO_ENABLED=$(CGO_ENABLED) $(GO) \
-	test -test.v --run ProductionTest \
-	--cover
-
+integtest:
+	DURATION=1 CGO_ENABLED=$(CGO_ENABLED) $(GO) test -test.v --run ProductionTest --cover

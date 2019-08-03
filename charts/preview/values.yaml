@@ -23,10 +23,9 @@ preview:
 
 db:
   enabled: false
-  
+
 preview-db:
   persistence:
     enabled: false
-  
 
   usePassword: false
